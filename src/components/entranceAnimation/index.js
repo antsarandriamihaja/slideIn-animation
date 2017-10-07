@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaggeredMotion, spring } from 'react-motion';
 
+
 const Wrapper = styled.div`
 display: flex;
 width: 100vw;
@@ -10,7 +11,6 @@ height: 100vh;
 //flext-basis: take as much space as it can
 const Box = styled.div`
 flex-basis: ${(props) => props.width}%;
-border: 2px solid white;
 background: ${(props) => props.bgColor};
 `;
 
@@ -24,16 +24,17 @@ const colors = [
 ];
 
 const ContentWrapper = styled.div`
-flex-basis: 100%
+flex-basis: 100%;
+background: #FF8F00;
 `;
 
 class EntranceAnimation extends React.Component {
 
     render() {
-    //     const {
-    //     children
-    // } = this.props;
-    
+        const {
+        children
+    } = this.props;
+
         return (
             <StaggeredMotion
                 defaultStyles={[
@@ -59,13 +60,14 @@ class EntranceAnimation extends React.Component {
                         <Box bgColor={colors[1]} width={styles[1].width} />
                         <Box bgColor={colors[2]} width={styles[2].width} />
                         <Box bgColor={colors[3]} width={styles[3].width} />
-                        <Box bgColor={colors[3]} width={styles[4].width} />
-                        <Box bgColor={colors[3]} width={styles[5].width} />
+                        <Box bgColor={colors[4]} width={styles[4].width} />
+                        <Box bgColor={colors[5]} width={styles[5].width} />
+                        <ContentWrapper>
+                            {children}
+                        </ContentWrapper>
                     </Wrapper>
                 )}
-                {/* <ContentWrapper>
-                    {children}
-                </ContentWrapper> */}
+
             </StaggeredMotion>
         );
     }

@@ -4,17 +4,26 @@ import styled from 'styled-components';
 import EntranceAnimation from './components/entranceAnimation';
 import AboutMe from './components/aboutMe';
 
-const Wrapper = styled.div`
-display:flex
-`
+const ContentWrapper = styled.div`
+display:flex;
+flex-direction: row;
+align-items: flex-start;
+max-width: 1200px;
+height: 100vh;
+margin: 0 auto;
+justify-content: center;
+`;
+
 class App extends Component {
   render() {
     return (
-      <Wrapper>
-        <EntranceAnimation>
-          <AboutMe/>
-        </EntranceAnimation>
-      </Wrapper>
+
+      <EntranceAnimation>
+        <ContentWrapper>
+         <AboutMe/>
+        </ContentWrapper>
+      </EntranceAnimation>
+
     );
   }
 }
