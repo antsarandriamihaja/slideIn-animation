@@ -5,25 +5,32 @@ import EntranceAnimation from './components/entranceAnimation';
 import AboutMe from './components/aboutMe';
 
 const ContentWrapper = styled.div`
-display:flex;
-flex-direction: row;
-align-items: flex-start;
-max-width: 1200px;
-height: 100vh;
-margin: 0 auto;
-justify-content: center;
+
 `;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPortfolio: false,
+    }
+  };
+
+  handleShowPortfolio = () => {
+    this.setState({
+      showPortfolio: true,
+    });
+  }
+
   render() {
+    const {showPortfolio} = this.state;
     return (
-
-      <EntranceAnimation>
-        <ContentWrapper>
-         <AboutMe/>
-        </ContentWrapper>
-      </EntranceAnimation>
-
+      <ContentWrapper>
+        <AboutMe 
+        handleShowPortfolio = {this.handleShowPortfolio}
+        showPortfolio = {showPortfolio}
+        />
+      </ContentWrapper>
     );
   }
 }

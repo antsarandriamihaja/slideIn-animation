@@ -1,8 +1,5 @@
-.App {
-  text-align: center;
-  width: 100%
-}
 
-html body {
+html, body {
   width:100%;
+  margin: 0;
 }
