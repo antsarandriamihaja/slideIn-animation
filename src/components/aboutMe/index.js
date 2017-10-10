@@ -15,18 +15,19 @@ const ContentWrapper = styles.div`
 background: url(${macwallpaper});
 background-repeat: no-repeat;
 background-size: cover;
-display: flex;
+display: ${(props)=> props.display};
 height: 100vh;
 justify-content: center;
 flex-direction: column;
+width: ${(props) => props.width}%;
 `;
 
 const About = styles.div`
 margin: 0 auto;
-padding: 10px 30px;
+padding-top: 20%;
 border-radius: 25px;
+display: ${(props)=> props.display};
 width: 50%;
-background: rgba(245, 245, 245, 0.1);
 `;
 
 const Logo = styles.div`
@@ -44,8 +45,15 @@ margin: 0 auto;
 display: flex;
 flex-flow: row wrap;
 `;
+const AboutContent = styles.div`
+background: rgba(245, 245, 245, 0.2);
+padding: 10px 30px;
+height: 300px;
+border-radius: 25px;
+`;
 const Title = styles.h1`
 font-size: 2.5em;
+
 `;
 
 const Subtitle = styles.h3`
@@ -57,26 +65,28 @@ color: #616161;
 
 const Button = styles.button`
 color: white;
-background-color: black;
+background-color: #E65100;
 font-size: 1em;
 padding: 1em;
-border: 0.5px solid black;
+border: 0.5px solid #E65100;
 border-radius: 25px;
 float: right;
 `;
 class AboutMe extends React.Component {
     render() {
-        const { handleShowPortfolio } = this.props;
-
+       const {handleShowPortfolio} = this.props;
         return (
+            
                 <ContentWrapper>
 
-                    <About >
-                        <Title> Hi, I'm Antsa. I'm a web developer.I enjoy building beautiful and interactive web apps with Javascript technologies.</Title>
+                    <About>
+                        <AboutContent>
+                        <Title> Hi, I'm Antsa. I'm a web developer. I enjoy building beautiful and interactive web apps with Javascript technologies.</Title>
                         <Subtitle>front-end developer | node js developer </Subtitle>
                         <Button 
                             onClick={handleShowPortfolio}
                         >View Portfolio >></Button>
+                        </AboutContent>
                     </About>
 
                 </ContentWrapper>

@@ -19,8 +19,6 @@ const colors = [
     '#FFD54F',
     '#FFCA28',
     '#FFC107',
-    '#FFB300',
-    '#FFA000',
 ];
 
 const ContentWrapper = styled.div`
@@ -32,14 +30,14 @@ class EntranceAnimation extends React.Component {
 
     render() {
         const {
-        children
-    } = this.props;
+        children,
+        showAnimation
+        } = this.props;
 
-        return (
+        if (showAnimation) {
+            return (
             <StaggeredMotion
                 defaultStyles={[
-                    { width: 100 },
-                    { width: 100 },
                     { width: 100 },
                     { width: 100 },
                     { width: 100 },
@@ -50,18 +48,15 @@ class EntranceAnimation extends React.Component {
                     { width: spring(prevStyles[0].width) },
                     { width: spring(prevStyles[1].width) },
                     { width: spring(prevStyles[2].width) },
-                    { width: spring(prevStyles[3].width) },
-                    { width: spring(prevStyles[4].width) },
                 ]}
             >
+
                 {(styles) => (
                     <Wrapper>
                         <Box bgColor={colors[0]} width={styles[0].width} />
                         <Box bgColor={colors[1]} width={styles[1].width} />
                         <Box bgColor={colors[2]} width={styles[2].width} />
                         <Box bgColor={colors[3]} width={styles[3].width} />
-                        <Box bgColor={colors[4]} width={styles[4].width} />
-                        <Box bgColor={colors[5]} width={styles[5].width} />
                         <ContentWrapper>
                             {children}
                         </ContentWrapper>
@@ -70,6 +65,9 @@ class EntranceAnimation extends React.Component {
 
             </StaggeredMotion>
         );
+        } else {
+            return null;
+        }
     }
 }
 
