@@ -75,7 +75,7 @@ export default class Projects extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            photos: [[640, 363], [640, 351], [800, 400], [700, 500], [800, 250], [600, 600], [800, 600], [600, 660], [400, 700]],
+            photos: [[800, 500], [640, 351], [650,400], [700, 500], [800, 450], [700, 400], [900, 600], [700, 400], [700, 450]],
             currPhoto: 0,
         };
     };
