@@ -10,9 +10,10 @@ import pomodoro from './5.jpg';
 import wikiviewer from './6.jpg';
 import weather from './7.jpg';
 import urlshort from './8.jpg';
+import previous from './previous.jpg';
 import './index.css';
 
-const pictures = [aria, contact, githubRepo, calculator, simon, pomodoro, wikiviewer, weather, urlshort ];
+const pictures = [aria, contact, githubRepo, calculator, simon, pomodoro, wikiviewer, weather, urlshort];
 const technologies = [
     "React, Node, Redux, PostgreSQL, Webpack, Babel",
     "React, create-react-app CLI",
@@ -39,12 +40,22 @@ const hrefs = [
 const springSettings = { stiffness: 170, damping: 26 };
 const NEXT = 'show-next';
 
+const Wrapper = styles.div`
+height: 100vh;
+`;
 const ProjectWrapper = styles.div`
   display: flex;
   align-items: center;
-  height: 700px;
+  height: 650px;
   position: relative;
   `;
+
+const ProgressBarContainer = styles.div`
+display: block;
+position: relative;
+text-align: center;
+margin-top: -30px;
+`;
 
 const ProjectsInner = styles.div`
   overflow: hidden;
@@ -71,11 +82,31 @@ background: #fff;
 padding: 15px;
 border-radius: 25px;
 `;
+
+const Previous = styles.div`
+background: url(${previous});
+background-repeat: no-repeat;
+background-size: 100%;
+margin-left: 5%;
+height: 70px;
+width: 70px;
+`;
+
+const Next = styles.div`
+background: url(${previous});
+background-repeat: no-repeat;
+background-size: 100%;
+transform: scaleX(-1);
+margin-right: 5%;
+height: 70px;
+width: 70px;
+color: orange;
+`;
 export default class Projects extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            photos: [[800, 500], [640, 351], [650,400], [700, 500], [800, 450], [700, 400], [900, 600], [700, 400], [700, 450]],
+            photos: [[800, 500], [640, 351], [650, 400], [700, 500], [800, 450], [700, 400], [950, 600], [700, 400], [700, 450]],
             currPhoto: 0,
         };
     };
@@ -116,39 +147,43 @@ export default class Projects extends React.Component {
         }, leftStartCoords);
 
         return (
-            <div>
-                <button onClick={this.clickHandler.bind(null, '')}>Previous</button>
-                <input
-                    type="range"
-                    min={0}
-                    max={photos.length - 1}
-                    value={currPhoto}
-                    onChange={this.handleChange} />
-                <button onClick={this.clickHandler.bind(null, NEXT)}>Next</button>
+            <Wrapper>
                 <ProjectWrapper>
+                    <Previous onClick={this.clickHandler.bind(null, '')}></Previous>
                     <Motion style={{ height: spring(currHeight), width: spring(currWidth) }}>
                         {container =>
                             <ProjectsInner
                                 style={container}
                             >
                                 {configs.map((style, i) =>
+                                    <div>
 
-                                    <Motion key={i} style={style}>
-                                        {style =>
-                                            <a href={hrefs[i]} target="_blank">
-                                            <img className="projectImage" src={pictures[i]} style={style} />
-                                            </a>
-                                           
-                                        }
-                                    </Motion>
-                                   
+                                        <Motion key={i} style={style}>
+                                            {style =>
+                                                <a href={hrefs[i]} target="_blank">
+                                                    <img className="projectImage" src={pictures[i]} style={style} />
+                                                </a>
+                                            }
+                                        </Motion>
+                                    </div>
+
                                 )}
-                             
+
                             </ProjectsInner>
                         }
                     </Motion>
+                    <Next onClick={this.clickHandler.bind(null, NEXT)}></Next>
+
                 </ProjectWrapper>
-            </div>
+                <ProgressBarContainer>
+                    <input
+                        type="range"
+                        min={0}
+                        max={photos.length - 1}
+                        value={currPhoto}
+                        onChange={this.handleChange} />
+                </ProgressBarContainer>
+            </Wrapper>
         );
     };
 }
